@@ -16,7 +16,7 @@ Datalogger start when two condition is satisfied:
 If switch let the pin goes pullup (OFF), EEPROM write is stopped, and if is moved back to ground (ON)
 The EEprom is write from the last address where stopped.
 
-You can use this datalogger to see your Bit Per Minute, in time, when you do fittness, run, or during your sleep.
+You can use this datalogger to see your Beats per minute (heart rate), in time, when you do fittness, run, or during your sleep.
 Up to 3 hours of records
 One EEPROM record at every 16 BPM ! 
 If no BPM, no EEPROM records.
