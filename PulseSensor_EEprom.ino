@@ -169,7 +169,7 @@ void loop() {
    buttonState = digitalRead(BUTTON_PIN);
   // write the latest sample to Serial.
   pulseSensor.outputSample();
-
+  
   /*
      If a beat has happened since we last checked,
      write the per-beat information to Serial.
@@ -177,17 +177,18 @@ void loop() {
      NOTE: Do not set the optional duration of tone! That is blocking!
    */
   if (pulseSensor.sawStartOfBeat()) {
+    digitalWrite(PULSE_BLINK, LOW);//pin pt LED 16 BPM OFF, for EEPROM check
     pulseSensor.outputBeat();
     tone(PIN_SPEAKER,1500);              // tone(pin,frequency)
     if ((buttonState == LOW) && (adr_EPR < EEPROM.length())){//check for EEPROM write
       stay += 1;
     }
      if (stay >= 15){     // save in EEPROM ones in 16th BPM reads
-        stay = 0;          //aprox 3 hours BPM in 1024 memories
+        digitalWrite(PULSE_BLINK, HIGH);//pin pt LED 16 BPM ON, for EEPROM check
+        stay = 0;          //time log aprox 3 hours BPM in 1024 memories
         EEPROM.write(adr_EPR, (pulseSensor.getBeatsPerMinute()));
         adr_EPR += 1;
-        digitalWrite(PULSE_BLINK, bitRead(adr_EPR, 0));//pin pt LED 16 BPM OFF, 16 BPM ON, for EEPROM check
-        EEPROM.write(adr_EPR,255);//stop marker - for partial new logs over previous logs
+        EEPROM.write(adr_EPR,255);//stop marker for partial new logs over previous logs
       }
   }
 
