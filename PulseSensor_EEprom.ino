@@ -118,6 +118,7 @@ void setup() {
  Final: 
       Serial.println(F("BEEP"));
       Serial.println(F("DONE"));//Will flush the Serial port on Excel side PLX-DAQ2
+      Serial.println(F("STOPLOGGING")); //disconnect PLX-DAQ2
       Serial.end();
    set_sleep_mode(SLEEP_MODE_PWR_DOWN);   // sleep mode set 
    sleep_enable();
