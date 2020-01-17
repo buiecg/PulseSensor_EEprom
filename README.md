@@ -3,11 +3,11 @@ Based on WorldFamousElectronics/PulseSensorPlayground project I did a BPM data l
 What is new: 
 Please add a switch from digital pin 3 to ground (DIP switch is good, NOT push button)
 When the switch, grounded the pin 3, EEPROM datalogger is in function and do next events: 
-At power on or reset, start sending EEPROM values from Arduino to computer (serial) and using PLX_DAQ v2.11, can import in a excel file as Current number / BPM columns. 
-After all 1024 EEPROM position are transfered, arduino processor go to sleep.
+At power on or reset, start sending EEPROM values from Arduino to computer (serial) and using PLX_DAQ v2.11, can import in a excel file as Current number / BPM columns. EEPROM is read till marker value, 255, is found in EEPROM. Marker help to read just last recorded values, and prevent reading previous data.
+After EEPROM position to marker are transfered, arduino processor go to sleep.
 And remain there till is actionate the switch and PIN 3 go pullup or HIGH
 From here, programm acting as WorldFamousElectronics/PulseSensorPlayground - PulseSensor_BPM example or PulseSensor_Speaker
-except pin 13 (with onboard LED) is changed and do not light, I change the function for EEPROM write event
+except pin 13 (with onboard LED) is changed and do not light, I change the function, of this pin 13, for EEPROM write event
 Add LED on D5 for fade on BPM detect
 Add Speaker (Piezo) on D2.
 Datalogger start when two condition is satisfied:
